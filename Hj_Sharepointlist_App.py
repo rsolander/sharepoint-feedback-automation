@@ -140,7 +140,7 @@ def main():
         newsub_df = newsub_df[newsub_df['Date Submitted'] > '2021-03-29']
 
         for row in newsub_df.itertuples():
-            print(row.Number,row.Country,row._5,row.Email,row.Message,row._10,targetassignID)
+            print(row.Number+' was sent')
             #If the source URL exceed 255 chars, shorten it for sharepoint
             sourceurl = row._5
             if len(row._5) > 255:
