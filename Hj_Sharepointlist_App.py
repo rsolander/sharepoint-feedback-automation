@@ -70,6 +70,7 @@ def main():
         }
         stageDLurl = 'https://insights.hotjar.com/api/v1/sites/1764089/feedback/305636/responses?fields=browser,content,created_datetime_string,created_epoch_time,country_code,country_name,device,id,index,os,response_url,short_visitor_uuid,window_size&sort=-id&offset=0&amount=30000&format=csv&filter=created__ge__2009-12-19'
         #Needs to be hidden using env variables
+        print(os.environ.get('RA_TENANT'),os.environ.get('CLIENT_ID'),os.environ.get('CLIENT_SECRET'),os.environ.get('PW_HJ'))
         tenantid = os.environ.get('RA_TENANT')
         credentials = (os.environ.get('CLIENT_ID'), os.environ.get('CLIENT_SECRET'))
         account = Account(credentials, auth_flow_type='credentials', tenant_id=tenantid)
