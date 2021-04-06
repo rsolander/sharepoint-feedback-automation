@@ -93,6 +93,7 @@ def main():
             list_row_values.append(list_row.fields)
         df = pd.DataFrame(list_row_values)
         print('Issue IDs collected')
+        existing_list = df['Title'].tolist()
         #Get the hidden user list
         hiddenUser_list = site.get_list_by_name('User Information List')
         userlist_items = hiddenUser_list.get_items()
@@ -126,7 +127,7 @@ def main():
         #Load the ra.com hotjar data and start filtering
         hjdf = pd.read_csv('feedback-256010.csv')
         #Compare new data to sharepoint list, only grab new entries
-        newsub_df = hjdf[~hjdf['Number'].isin(df['Title'])]
+        newsub_df = hjdf[~hjdf['Number'].isin(existing_list)]
         #Drop any entries with no feedback message
         newsub_df = newsub_df.dropna(subset=['Message'])
         #Fill NaN email values with an empty string
