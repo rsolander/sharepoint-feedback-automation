@@ -129,16 +129,17 @@ def main():
         #Load the ra.com hotjar data and start filtering
         hjdf = pd.read_csv('feedback-256010.csv')
         print(hjdf)
+        #Convert number field to string
+        hjdf['Number'] = hjdf['Number'].astype(str)
         #Compare new data to sharepoint list, only grab new entries
         newsub_df = hjdf[~hjdf['Number'].isin(existing_list)]
+        print(newsub_df)
         #Drop any entries with no feedback message
         newsub_df = newsub_df.dropna(subset=['Message'])
         #Fill NaN email values with an empty string
         newsub_df['Email'] = newsub_df['Email'].fillna('')
         #Convert emotion datatype to float64
         newsub_df['Emotion (1-5)'] = newsub_df['Emotion (1-5)'].astype(np.float64)
-        #Convert number field to string
-        newsub_df['Number'] = newsub_df['Number'].astype(str)
         #Convert source URL field to string
         newsub_df['Source URL'] = newsub_df['Source URL'].astype(str)
         #Only grab entries at the start of the time specififed
