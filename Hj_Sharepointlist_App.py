@@ -70,7 +70,6 @@ def main():
         }
         stageDLurl = 'https://insights.hotjar.com/api/v1/sites/1764089/feedback/305636/responses?fields=browser,content,created_datetime_string,created_epoch_time,country_code,country_name,device,id,index,os,response_url,short_visitor_uuid,window_size&sort=-id&offset=0&amount=30000&format=csv&filter=created__ge__2009-12-19'
         #Needs to be hidden using env variables
-        print(os.environ.get('RA_TENANT'),os.environ.get('CLIENT_ID'),os.environ.get('CLIENT_SECRET'),os.environ.get('PW_HJ'))
         tenantid = os.environ.get('RA_TENANT')
         credentials = (os.environ.get('CLIENT_ID'), os.environ.get('CLIENT_SECRET'))
         account = Account(credentials, auth_flow_type='credentials', tenant_id=tenantid)
@@ -93,9 +92,8 @@ def main():
             list_row_values.append(list_row.fields)
         df = pd.DataFrame(list_row_values)
         print('Issue IDs collected')
-        print(df)
+
         existing_list = df['Title'].tolist()
-        print(existing_list)
         #Get the hidden user list
         hiddenUser_list = site.get_list_by_name('User Information List')
         userlist_items = hiddenUser_list.get_items()
@@ -128,12 +126,10 @@ def main():
 
         #Load the ra.com hotjar data and start filtering
         hjdf = pd.read_csv('feedback-256010.csv')
-        print(hjdf)
         #Convert number field to string
         hjdf['Number'] = hjdf['Number'].astype(str)
         #Compare new data to sharepoint list, only grab new entries
         newsub_df = hjdf[~hjdf['Number'].isin(existing_list)]
-        print(newsub_df)
         #Drop any entries with no feedback message
         newsub_df = newsub_df.dropna(subset=['Message'])
         #Fill NaN email values with an empty string
@@ -144,7 +140,7 @@ def main():
         newsub_df['Source URL'] = newsub_df['Source URL'].astype(str)
         #Only grab entries at the start of the time specififed
         newsub_df = newsub_df[newsub_df['Date Submitted'] > '2021-03-29']
-        print(newsub_df)
+
         for row in newsub_df.itertuples():
             print(row.Number+' was sent')
             #If the source URL exceed 255 chars, shorten it for sharepoint
@@ -164,7 +160,7 @@ def main():
                                                'Device':row.Device,
                                                'PrimaryAssigneeLookupId':15})
     sched = BlockingScheduler()
-    sched.add_job(scheduledtask,'interval', minutes=4, id='update_sharepointlist')
+    sched.add_job(scheduledtask,'interval', hours=1, id='update_sharepointlist')
     sched.start()
 if __name__ == "__main__":
     main()
