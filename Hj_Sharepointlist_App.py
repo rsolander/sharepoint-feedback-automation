@@ -93,7 +93,9 @@ def main():
             list_row_values.append(list_row.fields)
         df = pd.DataFrame(list_row_values)
         print('Issue IDs collected')
+        print(df)
         existing_list = df['Title'].tolist()
+        print(existing_list)
         #Get the hidden user list
         hiddenUser_list = site.get_list_by_name('User Information List')
         userlist_items = hiddenUser_list.get_items()
@@ -126,6 +128,7 @@ def main():
 
         #Load the ra.com hotjar data and start filtering
         hjdf = pd.read_csv('feedback-256010.csv')
+        print(hjdf)
         #Compare new data to sharepoint list, only grab new entries
         newsub_df = hjdf[~hjdf['Number'].isin(existing_list)]
         #Drop any entries with no feedback message
@@ -140,7 +143,7 @@ def main():
         newsub_df['Source URL'] = newsub_df['Source URL'].astype(str)
         #Only grab entries at the start of the time specififed
         newsub_df = newsub_df[newsub_df['Date Submitted'] > '2021-03-29']
-
+        print(newsub_df)
         for row in newsub_df.itertuples():
             print(row.Number+' was sent')
             #If the source URL exceed 255 chars, shorten it for sharepoint
