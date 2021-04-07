@@ -160,7 +160,7 @@ def main():
                                                'Device':row.Device,
                                                'PrimaryAssigneeLookupId':15})
     sched = BlockingScheduler()
-    sched.add_job(scheduledtask,'interval', hours=1, id='update_sharepointlist')
+    sched.add_job(scheduledtask,'interval', hours=6, id='update_sharepointlist')
     sched.start()
 if __name__ == "__main__":
     main()
