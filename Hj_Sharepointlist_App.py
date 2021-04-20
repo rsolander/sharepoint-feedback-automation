@@ -79,7 +79,7 @@ def main():
         #searchres=rok_shar.search_site('hotjar')
         #print(searchres)
         site = rok_shar.get_site('rockwellautomation.sharepoint.com','/sites/HotjarComments')
-        share_point_list = site.get_list_by_name('Test 2.24.21')
+        share_point_list = site.get_list_by_name('Feedback List')
         list_items = share_point_list.get_items()
         # create a list of object_id values for all sharepoint list item rows
         id_list = []
@@ -160,7 +160,7 @@ def main():
                                                'Device':row.Device,
                                                'PrimaryAssigneeLookupId':15})
     sched = BlockingScheduler()
-    sched.add_job(scheduledtask,'interval', hours=6, id='update_sharepointlist')
+    sched.add_job(scheduledtask,'interval', hours=1, id='update_sharepointlist')
     sched.start()
 if __name__ == "__main__":
     main()
