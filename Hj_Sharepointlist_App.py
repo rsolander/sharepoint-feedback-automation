@@ -158,7 +158,8 @@ def main():
                                                'OS':row.OS,
                                                'Date_x0020_Submitted':row._3,
                                                'Device':row.Device,
-                                               'PrimaryAssigneeLookupId':15})
+                                               'PrimaryAssigneeLookupId':15,
+                                               'LinktoHotJar':row._9})
     sched = BlockingScheduler()
     sched.add_job(scheduledtask,'interval', hours=6, id='update_sharepointlist')
     sched.start()
