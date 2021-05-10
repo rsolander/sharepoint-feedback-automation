@@ -107,7 +107,20 @@ def main():
             list_row_values2.append(list_row2.fields)
         df2 = pd.DataFrame(list_row_values2)
 
-        targetassignID = df2.loc[df2['Title'] == 'Joseph Harkulich','id']
+        poi_dic = {}
+        names_list = ['Joseph Harkulich',
+                      'Sophia Abdelmawla',
+                      'Melanie Gee',
+                      'Susan Peirson',
+                      'Deborah Hoffman',
+                      'Amy Schultz',
+                      'Eric Solderitsch',
+                      'Brad West',
+                      'Matthew Huth',
+                      'Marina Sedmak']
+        for name in names_list:
+            targetassignID = df2.loc[df2['Title'] == name,'id'].values[0]
+            poi_dic[name] = targetassignID
 
         with requests.Session() as session:
             payload = {"action":"login", "email":"rsolande@ra.rockwell.com", "password": os.environ.get('PW_HJ')}
@@ -143,11 +156,32 @@ def main():
 
         for row in newsub_df.itertuples():
             print(row.Number+' was sent')
-            #If the source URL exceed 255 chars, shorten it for sharepoint
+            #---Assignments---
+            assignID = poi_dic['Joseph Harkulich']
+            if (('//locator.rockwellautomation' or '//partners.rockwellautomation.com') in str(row._5)):
+                #Deb
+                assignID = poi_dic['Deborah Hoffman']
+            if (('//compatibility.rockwellautomation' or '//download.rockwellautomation.com') in str(row._5)):
+                #Eric
+                assignID = poi_dic['Eric Solderitsch']
+            if ('//campaign.rockwellautomation' in str(row._5)):
+                assignID = poi_dic['Brad West']
+            if ('https://www.rockwellautomation.com/' in str(row._5)):
+                pages = ['/industry/','/capability','/products/software','industries.html','capabilities.html','products.html']
+                if ('https://www.rockwellautomation.com/search' in row._5):
+                    assignID = poi_dic['Matthew Huth']
+                elif any(i in row._5 for i in pages):
+                    assignID = poi_dic['Susan Peirson']
+                else:
+                    assignID = poi_dic['Melanie Gee']
+            #Priority 1 - Emotion 1 + Email = Joe
+            if (row.Email != '' and row._10 == 1):
+                assignID = poi_dic['Joseph Harkulich']
+            #---If the source URL exceed 255 chars, shorten it for sharepoint---
             sourceurl = row._5
             if len(row._5) > 255:
                 sourceurl = row._5[:len(row._5)-(len(row._5)-255)]
-            #Create the new list items
+            #---Create the new list items---
             share_point_list.create_list_item({'Title':row.Number,
                                                'Country':row.Country,
                                                'Source_x0020_URL':sourceurl,
@@ -158,7 +192,7 @@ def main():
                                                'OS':row.OS,
                                                'Date_x0020_Submitted':row._3,
                                                'Device':row.Device,
-                                               'PrimaryAssigneeLookupId':15,
+                                               'PrimaryAssigneeLookupId':float(assignID),
                                                'LinktoHotJar':row._9})
     sched = BlockingScheduler()
     sched.add_job(scheduledtask,'interval', hours=6, id='update_sharepointlist')
