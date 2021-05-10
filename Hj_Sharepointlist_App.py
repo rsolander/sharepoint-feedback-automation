@@ -117,7 +117,8 @@ def main():
                       'Eric Solderitsch',
                       'Brad West',
                       'Matthew Huth',
-                      'Marina Sedmak']
+                      'Marina Sedmak',
+                      'Susan Stuebe']
         for name in names_list:
             targetassignID = df2.loc[df2['Title'] == name,'id'].values[0]
             poi_dic[name] = targetassignID
@@ -168,12 +169,15 @@ def main():
                 assignID = poi_dic['Brad West']
             if ('https://www.rockwellautomation.com/' in str(row._5)):
                 pages = ['/industry/','/capability','/products/software','industries.html','capabilities.html','products.html']
+                pages2 = ['/products/hardware','/company/','company.html']
                 if ('https://www.rockwellautomation.com/search' in row._5):
                     assignID = poi_dic['Matthew Huth']
                 elif any(i in row._5 for i in pages):
                     assignID = poi_dic['Susan Peirson']
-                else:
+                elif any(i in row._5 for i in pages2):
                     assignID = poi_dic['Melanie Gee']
+                else:
+                    assignID = poi_dic['Susan Stuebe']
             #Priority 1 - Emotion 1 + Email = Joe
             if (row.Email != '' and row._10 == 1):
                 assignID = poi_dic['Joseph Harkulich']
