@@ -118,7 +118,9 @@ def main():
                       'Brad West',
                       'Matthew Huth',
                       'Marina Sedmak',
-                      'Susan Stuebe']
+                      'Susan Stuebe',
+                      'Marcelo Ocampo',
+                      'Dave Picou']
         for name in names_list:
             targetassignID = df2.loc[df2['Title'] == name,'id'].values[0]
             poi_dic[name] = targetassignID
@@ -168,27 +170,41 @@ def main():
             if ('//campaign.rockwellautomation' in str(row._5)):
                 assignID = poi_dic['Brad West']
             if ('https://www.rockwellautomation.com/' in str(row._5)):
-                pages = ['/industry/','/capability','/products/software','industries.html','capabilities.html','products.html']
+                pages = ['/industry/','/capability','/products/software','industries.html','capabilities.html','products.html','/industries/','/capabilities/']
                 pages2 = ['/products/hardware','/company/','company.html']
+                pages3 = ['/literature-library.html','/support/documentation/technical']
                 if ('https://www.rockwellautomation.com/search' in row._5):
+                    #Matt gets all search
                     assignID = poi_dic['Matthew Huth']
                 elif any(i in row._5 for i in pages):
+                    #Sue gets software, ind, capa
                     assignID = poi_dic['Susan Peirson']
                 elif any(i in row._5 for i in pages2):
+                    #Mel gets hardware, company
                     assignID = poi_dic['Melanie Gee']
+                elif ('/proposalworks-proposal-builder' in str(row._5)):
+                    #Marcelo gets proposalworks
+                    assignID = poi_dic['Marcelo Ocampo']
+                elif any(i in row._5 for i in pages3):
+                    #Marina gets lit library, tech docs
+                    assignID = poi_dic['Marina Sedmak']
+                elif ('rockwellautomation.com/my' in str(row._5)):
+                    #Sophia gets myrockwell
+                    assignID = poi_dic['Sophia Abdelmawla']
                 else:
+                    #Default to Susan Stuebe
                     assignID = poi_dic['Susan Stuebe']
             #Priority 1 - Emotion 1 + Email = Joe
             if (row.Email != '' and row._10 == 1):
                 assignID = poi_dic['Joseph Harkulich']
             #---If the source URL exceed 255 chars, shorten it for sharepoint---
-            sourceurl = row._5
-            if len(row._5) > 255:
-                sourceurl = row._5[:len(row._5)-(len(row._5)-255)]
+            #sourceurl = row._5
+            #if len(row._5) > 255:
+                #sourceurl = row._5[:len(row._5)-(len(row._5)-255)]
             #---Create the new list items---
             share_point_list.create_list_item({'Title':row.Number,
                                                'Country':row.Country,
-                                               'Source_x0020_URL':sourceurl,
+                                               'Source_x0020_URL':row._5,
                                                'Email':row.Email,
                                                'Message':row.Message,
                                                'Emotion_x0020__x0028_1_x002d_5_x':row._10,
