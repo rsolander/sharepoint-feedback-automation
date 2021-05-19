@@ -167,6 +167,9 @@ def main():
             if (('//compatibility.rockwellautomation' or '//download.rockwellautomation.com') in str(row._5)):
                 #Eric
                 assignID = poi_dic['Eric Solderitsch']
+            if ('//activate.rockwellautomation.com' in str(row._5)):
+                #Dave Picou
+                assignID = poi_dic['Dave Picou']
             if ('//campaign.rockwellautomation' in str(row._5)):
                 assignID = poi_dic['Brad West']
             if ('https://www.rockwellautomation.com/' in str(row._5)):
