@@ -170,27 +170,33 @@ def main():
             if ('//activate.rockwellautomation.com' in str(row._5)):
                 #Dave Picou
                 assignID = poi_dic['Dave Picou']
-            if ('//campaign.rockwellautomation' in str(row._5)):
+            camp_pages = ['//events.rockwellautomation','//campaigns.rockwellautomation']
+            if any(i in row._5 for i in camp_pages):
                 assignID = poi_dic['Brad West']
-            if ('https://www.rockwellautomation.com/' in str(row._5)):
-                pages = ['/industry/','/capability','/products/software','industries.html','capabilities.html','products.html','/industries/','/capabilities/']
+            if ('https://www.rockwellautomation.com' in str(row._5)):
+                pages = ['/industry/','/capability','/products/software','industries.html','capabilities.html','products.html','/industries/','/capabilities/','/support/documentation/']
                 pages2 = ['/products/hardware','/company/','company.html']
-                pages3 = ['/literature-library.html','/support/documentation/technical']
                 if ('https://www.rockwellautomation.com/search' in row._5):
                     #Matt gets all search
                     assignID = poi_dic['Matthew Huth']
+                elif ('/literature-library.html' in row._5):
+                    #Marina gets lit library, tech docs
+                    assignID = poi_dic['Marina Sedmak']
                 elif any(i in row._5 for i in pages):
                     #Sue gets software, ind, capa
                     assignID = poi_dic['Susan Peirson']
                 elif any(i in row._5 for i in pages2):
-                    #Mel gets hardware, company
-                    assignID = poi_dic['Melanie Gee']
+                    if ('/company/' in row._5):
+                        sue_comp = ['/company/news/presentations','/company/news/demonstrations']
+                        if any(i in row._5 for i in sue_comp):
+                            assignID = poi_dic['Susan Peirson']
+                        else:
+                            assignID = poi_dic['Melanie Gee']
+                    else:
+                        assignID = poi_dic['Melanie Gee']
                 elif ('/proposalworks-proposal-builder' in str(row._5)):
                     #Marcelo gets proposalworks
                     assignID = poi_dic['Marcelo Ocampo']
-                elif any(i in row._5 for i in pages3):
-                    #Marina gets lit library, tech docs
-                    assignID = poi_dic['Marina Sedmak']
                 elif ('rockwellautomation.com/my' in str(row._5)):
                     #Sophia gets myrockwell
                     assignID = poi_dic['Sophia Abdelmawla']
