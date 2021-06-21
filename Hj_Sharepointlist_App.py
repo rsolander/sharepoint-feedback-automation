@@ -15,6 +15,7 @@ import pytz
 import apscheduler
 from apscheduler.schedulers.blocking import BlockingScheduler
 from O365 import Account
+import spacy
 
 def main():
     parent_path = os.path.dirname(os.getcwd())
