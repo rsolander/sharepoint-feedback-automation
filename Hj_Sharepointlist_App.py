@@ -17,6 +17,9 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from O365 import Account
 
 def main():
+    parent_path = os.path.dirname(os.getcwd())
+    nlpmodel = spacy.load(parent_path + '/ux_rec_model')
+    print('NLP model loaded')
     def scheduledtask():
         print('Task begins...')
         loginurl = 'https://insights.hotjar.com/api/v2/users'
@@ -206,23 +209,25 @@ def main():
             #Priority 1 - Emotion 1 + Email = Joe
             if (row.Email != '' and row._10 == 1):
                 assignID = poi_dic['Joseph Harkulich']
-            #---If the source URL exceed 255 chars, shorten it for sharepoint---
-            #sourceurl = row._5
-            #if len(row._5) > 255:
-                #sourceurl = row._5[:len(row._5)-(len(row._5)-255)]
+            #---End assignments---
+            body = {'Title':row.Number,
+                    'Country':row.Country,
+                    'Source_x0020_URL':row._5,
+                    'Email':row.Email,
+                    'Message':row.Message,
+                    'Emotion_x0020__x0028_1_x002d_5_x':row._10,
+                    'Browser':row.Browser,
+                    'OS':row.OS,
+                    'Date_x0020_Submitted':row._3,
+                    'Device':row.Device,
+                    'PrimaryAssigneeLookupId':float(assignID),
+                    'LinktoHotJar':row._9})
+            #NLP classification
+            doc = nlpmodel(str(row.Message))
+            if doc.cats['ux_issue'] > 0.85:
+                body['n223ed48f5c94e38b4215edbe1a59772'] = '-1;#UX Issue|55e6360a-eb37-4dd6-8f86-06e8d6997e66'
             #---Create the new list items---
-            share_point_list.create_list_item({'Title':row.Number,
-                                               'Country':row.Country,
-                                               'Source_x0020_URL':row._5,
-                                               'Email':row.Email,
-                                               'Message':row.Message,
-                                               'Emotion_x0020__x0028_1_x002d_5_x':row._10,
-                                               'Browser':row.Browser,
-                                               'OS':row.OS,
-                                               'Date_x0020_Submitted':row._3,
-                                               'Device':row.Device,
-                                               'PrimaryAssigneeLookupId':float(assignID),
-                                               'LinktoHotJar':row._9})
+            share_point_list.create_list_item(body)
     sched = BlockingScheduler()
     sched.add_job(scheduledtask,'interval', hours=6, id='update_sharepointlist')
     sched.start()
