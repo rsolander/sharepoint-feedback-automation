@@ -221,7 +221,7 @@ def main():
                     'Date_x0020_Submitted':row._3,
                     'Device':row.Device,
                     'PrimaryAssigneeLookupId':float(assignID),
-                    'LinktoHotJar':row._9})
+                    'LinktoHotJar':row._9}
             #NLP classification
             doc = nlpmodel(str(row.Message))
             if doc.cats['ux_issue'] > 0.85:
