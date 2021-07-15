@@ -124,7 +124,8 @@ def main():
                       'Marina Sedmak',
                       'Susan Stuebe',
                       'Marcelo Ocampo',
-                      'Dave Picou']
+                      'Dave Picou',
+                      'Christa Andradewi']
         for name in names_list:
             targetassignID = df2.loc[df2['Title'] == name,'id'].values[0]
             poi_dic[name] = targetassignID
@@ -186,6 +187,9 @@ def main():
                 elif ('/literature-library.html' in row._5):
                     #Marina gets lit library, tech docs
                     assignID = poi_dic['Marina Sedmak']
+                elif ('/ecommerce/' in row._5):
+                    #Christa gets ecommerce
+                    assignID = poi_dic['Christa Andradewi']
                 elif any(i in row._5 for i in pages):
                     #Sue gets software, ind, capa
                     assignID = poi_dic['Susan Peirson']
