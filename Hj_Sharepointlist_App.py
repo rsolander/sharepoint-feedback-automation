@@ -206,8 +206,8 @@ def main():
                     #Marcelo gets proposalworks
                     assignID = poi_dic['Marcelo Ocampo']
                 elif ('rockwellautomation.com/my' in str(row._5)):
-                    #Sophia gets myrockwell
-                    assignID = poi_dic['Sophia Abdelmawla']
+                    #Matt gets myrockwell
+                    assignID = poi_dic['Matthew Huth']
                 else:
                     #Default to Susan Stuebe
                     assignID = poi_dic['Susan Stuebe']
