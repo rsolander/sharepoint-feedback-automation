@@ -49,7 +49,7 @@ def main():
                     'accept-language': 'en-US,en;q=0.9',
                     'content-length': '77',
                     'content-type': 'application/json;charset=UTF-8',
-                    'cookie': '_ga=GA1.2.408059203.1582125822; _gcl_au=1.1.2121588707.1582125822; _hjid=bcbc175b-2df6-400c-9358-65e7f264f87c; _BEAMER_USER_ID_zeKLgqli17986=dcee6938-859e-4348-bd34-f80d53c958b6; _BEAMER_FIRST_VISIT_zeKLgqli17986=2020-02-19T15:23:42.738Z; hubspotutk=c0b18dd390c94a77301d5605b29e6460; _fbp=fb.1.1582125894901.66546557; __zlcmid=wqivZyfBgbR6w5; _gcl_aw=GCL.1585228516.EAIaIQobChMI4N_Cspy46AIVGWyGCh09Mw6hEAAYASAAEgJOoPD_BwE; _gac_UA-51401671-1=1.1585228516.EAIaIQobChMI4N_Cspy46AIVGWyGCh09Mw6hEAAYASAAEgJOoPD_BwE; _hjDonePolls=481939,481419,156128,491599; _hjMinimizedPolls=481906,156128,491599; __hstc=162211107.c0b18dd390c94a77301d5605b29e6460.1582125822938.1585924808327.1586054543411.39; _BEAMER_DATE_zeKLgqli17986=2020-04-23T15:14:50.954Z; _hjIncludedInSample=1; _BEAMER_LAST_POST_SHOWN_zeKLgqli17986=1138945; _hjUserAttributesHash=ee9ffb91a314801cef0a410822bd5c93; receptiveNotificationCount=6; _gid=GA1.2.1421648835.1588522759; _BEAMER_LAST_UPDATE_zeKLgqli17986=1588522765334; _gat=1; ajs_anonymous_id=%22a15ab479-8323-4d1a-9115-a39c48fee53e%22; _dd_s=rum=0&expire=1588538442658',
+                    'cookie': 'in_new_website_experiment=variant1; _gcl_au=1.1.1236886742.1636490802; _ga=GA1.2.1087228580.1636490802; _gid=GA1.2.173253070.1636490802; _fbp=fb.1.1636490802791.1155339610; _scid=002b7a58-2ed4-4369-9486-5d306d260336; OptanonConsent=isIABGlobal=false&datestamp=Tue+Nov+09+2021+14:46:43+GMT-0600+(Central+Standard+Time)&version=6.5.0&hosts=&consentId=b0d92f7e-124e-4183-a277-e1d0debe8d15&interactionCount=1&landingPath=https://www.hotjar.com/&groups=0:1,3:1,2:1,1:1; _hjid=caed91f8-cf76-41d9-a6bb-bdfa835ea62f; _hjFirstSeen=1; _hjIncludedInPageviewSample=1; _hjAbsoluteSessionInProgress=1; _hjIncludedInSessionSample=1; __zlcmid=16ykT8ISabKB2SC; _BEAMER_USER_ID_zeKLgqli17986=010b5051-469e-4c24-95c3-3e5e0835faef; _BEAMER_FIRST_VISIT_zeKLgqli17986=2021-11-09T20:47:25.882Z; _BEAMER_FILTER_BY_URL_zeKLgqli17986=false; _hjCachedUserAttributes=eyJhdHRyaWJ1dGVzIjp7ImFjY291bnRfZmVhdHVyZV9mbGFncyI6bnVsbCwiYmVjYW1lX2FfY3VzdG9tZXIiOiIyMDIwLTAxLTI0VDIxOjMzOjQ3LjAwMFoiLCJieHBfYmFzaWNfY2NfZXhwIjoiY29udHJvbCIsImNvdW50cnkiOiJVUyIsImhpZ2hlc3RfcGxhbiI6ImJ1c2luZXNzIiwiaGlnaGVzdF9zYW1wbGVfcmF0ZSI6MTIwMDAwLCJvd25lZF9hY2NvdW50X2JlY2FtZV9hX2N1c3RvbWVyIjpudWxsLCJvd25lZF9hY2NvdW50X2JpbGxpbmdfY3ljbGUiOm51bGwsInJlZmVycmVyX3VybCI6InJlZmVycmFsIiwic2lnbmVkX3VwIjoiMjAyMS0xMS0wOVQyMDoxOTozMS4wMDBaIiwic2l0ZV9pbmR1c3RyeSI6Im90aGVyIiwic2l0ZV9sb3dlc3RfYWxleGFfcmFuayI6Mjg3ODYsInVzZXJfcm9sZSI6Im90aGVyIn0sInVzZXJJZCI6IjI2Mjc0MjYifQ==; _hjUserAttributesHash=6330f04c52d2e92b716f185b015b11c7; _hjMinimizedPolls=744300; _uetsid=252a0bb0419e11eca67e575c194da46b; _uetvid=252a33b0419e11ec8cb0ad8ad0a31d88; _BEAMER_LAST_UPDATE_zeKLgqli17986=1636490878320; _hjKB={"stateHistory":[{"name":"login","timestamp":1636492020492},{"name":"dashboard","timestamp":1636491998262},{"name":"login","timestamp":1636491980774}],"latestSite":"1764089"}; ajs_anonymous_id=d16dbee0-7638-4c8d-96ae-7d0674e1f13a; _dd_s=rum=0&expire=1636492935682; SESSION-ID=98316a4b8e83363624f07b929a6ddc011c05115ad66706203815bf7b; LOGGED-IN=1; XDOMAIN-LOGGED-IN=1; XSRF-TOKEN=IrWEysvBgk4az6EDO0PKwMqhjlR1Fabl8K5wPnr4jyuX9yERfQqRfUBYPQvueCn28yq0RXdAL83mPw9Ay8D8qw==; ajs_user_id=2627426',
                     'origin': 'https://insights.hotjar.com',
                     'referer': 'https://insights.hotjar.com/login',
                     'sec-fetch-dest': 'empty',
@@ -131,14 +131,14 @@ def main():
             poi_dic[name] = targetassignID
 
         with requests.Session() as session:
-            payload = {"action":"login", "email":"rsolande@ra.rockwell.com", "password": os.environ.get('PW_HJ')}
+            payload = {"action":"login", "email":"ra.hj.automation@gmail.com", "password": os.environ.get('PW_HJ')}
             rp = session.post(loginurl, data=json.dumps(payload), headers=postheader)
             with session.get(dlurl, headers=headexp, stream=True) as r:
                 with open('feedback-256010.csv', 'wb') as fd:
                     for chunk in r.iter_content(chunk_size=None):
                         fd.write(chunk)
         with requests.Session() as session:
-            payload = {"action":"login", "email":"rsolande@ra.rockwell.com", "password": os.environ.get('PW_HJ')}
+            payload = {"action":"login", "email":"ra.hj.automation@gmail.com", "password": os.environ.get('PW_HJ')}
             rp = session.post(loginurl, data=json.dumps(payload), headers=postheader)
             with session.get(stageDLurl, headers=getstageheader, stream=True) as r:
                 with open('feedback-305636.csv', 'wb') as fd:
