@@ -137,13 +137,6 @@ def main():
                 with open('feedback-256010.csv', 'wb') as fd:
                     for chunk in r.iter_content(chunk_size=None):
                         fd.write(chunk)
-        with requests.Session() as session:
-            payload = {"action":"login", "email":"ra.hj.automation@gmail.com", "password": os.environ.get('PW_HJ')}
-            rp = session.post(loginurl, data=json.dumps(payload), headers=postheader)
-            with session.get(stageDLurl, headers=getstageheader, stream=True) as r:
-                with open('feedback-305636.csv', 'wb') as fd:
-                    for chunk in r.iter_content(chunk_size=None):
-                        fd.write(chunk)
 
         #Load the ra.com hotjar data and start filtering
         hjdf = pd.read_csv('feedback-256010.csv')
