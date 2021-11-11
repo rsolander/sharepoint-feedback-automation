@@ -131,7 +131,7 @@ def main():
             poi_dic[name] = targetassignID
 
         with requests.Session() as session:
-            payload = {"action":"login", "email":"ra.hj.automation@gmail.com", "password": os.environ.get('PW_HJ')}
+            payload = {"action":"login", "email":"admindigitalmarketingteam@rockwellautomation.com", "password": os.environ.get('PW_HJ')}
             rp = session.post(loginurl, data=json.dumps(payload), headers=postheader)
             with session.get(dlurl, headers=headexp, stream=True) as r:
                 with open('feedback-256010.csv', 'wb') as fd:
